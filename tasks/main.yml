@@ -62,7 +62,7 @@
       name: "{{ item.name }}"
   with_items: "{{ latest_node_exporter.json.assets }}"
   when:
-    - item.name is search("linux-amd64")
+    - item.name is search("linux-{{ install_prometheus_arch }}")
     - ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
 
 - name: "Add SHA256 checksum for {{ install_prometheus }} release to 'install_prometheus_node_exporter' fact"
